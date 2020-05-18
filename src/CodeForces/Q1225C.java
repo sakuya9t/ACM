@@ -1,37 +1,41 @@
-package code;
+package CodeForces;
 
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * Code-forces Submission Template.
  * Actual solution is in the taskC part.
  * Remove the package declaration when submission which is located in the first line.
  */
-public class Main {
+public class Q1225C {
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         InputReader in = new InputReader(inputStream);
         PrintWriter out = new PrintWriter(outputStream);
         TaskC solver = new TaskC();
-        solver.solve(1, in, out);
+        solver.solve(in, out);
         out.close();
     }
 
     public static class TaskC {
+        void solve(InputReader in, PrintWriter out) {
+            int n = in.nextInt();
+            int p = in.nextInt();
 
-        void solve(int testNumber, InputReader in, PrintWriter out) {
-            int inputNum = in.nextInt();
-            String inputStr = in.next();
-            System.out.println(testNumber);
-            System.out.println(inputNum);
-            System.out.println(inputStr);
-            int res = 0;
+            for(int i = 0; ; i++){
+                int rem = n - i * p;
+                if(rem <= 0) break;
 
-            out.println(res);
+                int bits = Integer.bitCount(rem);
+                if(i >= bits && i <= rem){
+                    out.println(i);
+                    return;
+                }
+            }
+            out.println(-1);
         }
-
     }
 
     public static class InputReader {

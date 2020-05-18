@@ -1,4 +1,4 @@
-package code;
+package CodeForces;
 
 import java.io.*;
 import java.util.StringTokenizer;
@@ -6,9 +6,9 @@ import java.util.StringTokenizer;
 /**
  * Code-forces Submission Template.
  * Actual solution is in the taskC part.
- * Remove the package declaration when submission.
+ * Remove the package declaration when submission which is located in the first line.
  */
-public class Q1225A {
+public class Q1305C {
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -22,13 +22,21 @@ public class Q1225A {
     public static class TaskC {
 
         void solve(int testNumber, InputReader in, PrintWriter out) {
-            int a = in.nextInt();
-            int b = in.nextInt();
-            String res = "";
-            if(a + 1 == b) res = a + "9 " + b + "0";
-            else if(a == b) res = a + "0 " + b + "1";
-            else if(a == 9 && b == 1) res = "99 100";
-            else res = "-1";
+            int n = in.nextInt();
+            int m = in.nextInt();
+            int[] nums = new int[n];
+            for(int i = 0; i < n; i++) nums[i] = in.nextInt();
+            if(n > m) {
+                out.println(0);
+                return;
+            }
+
+            long res = 1;
+            for(int i = 0; i < n; i++) {
+                for(int j = 0; j < i; j++) {
+                    res = (res * (Math.abs(nums[j] - nums[i]) % m)) % m;
+                }
+            }
 
             out.println(res);
         }
